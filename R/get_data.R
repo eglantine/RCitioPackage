@@ -94,7 +94,7 @@ getPredictedCoursesData = function(base_url, weekday = 0, session_id){
 
 }
 
-getPredictedOccupancy = function(base_url,session_id, service_date){
+getPredictedOccupancyData = function(base_url,session_id, service_date){
   predicted_occupancy_route = paste0(base_url,
                                      "/rest/predicted_occupancy",
                                      "?service_date=",
