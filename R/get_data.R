@@ -80,6 +80,7 @@ getCoursesData = function(base_url, service_date = Sys.Date()-7, session_id){
   response = getResponseFromRoute(courses_route, session_id)
 
   courses_data = data.table::rbindlist(response$data, fill = TRUE)
+
 }
 
 getPredictedCoursesData = function(base_url, weekday = 0, session_id){
@@ -90,6 +91,7 @@ getPredictedCoursesData = function(base_url, weekday = 0, session_id){
   response = fromJSON(response)
 
   predicted_courses_data = do.call(rbind,response$data$stoptimes)
+
 }
 
 getPredictedOccupancyData = function(base_url,session_id, service_date){
@@ -100,22 +102,9 @@ getPredictedOccupancyData = function(base_url,session_id, service_date){
 
   response = getResponseFromRoute(predicted_occupancy_route, session_id)
 
-  predicted_occupancy_data = data.table::rbindlist(response, fill = TRUE)
+  predicted_occupancy_data = data.table::rbindlist(response$data, fill = TRUE)
 
   return(predicted_occupancy_data)
-}
-
-getServiceDates =function (base_url,session_id){
-  referential_route = paste0(base_url,"/rest/service_date")
-  response = getResponseFromRoute(referential_route, session_id)
-  service_dates = data.table::rbindlist(response, fill = TRUE)
-
-  return(service_dates)
-}
-
-getMaxServiceDate = function(base_url,session_id){
-  service_dates = getServiceDates(base_url, session_id)
-  max_service_date = max(service_dates[service_dates$num_courses>0]$service_date)
 }
 
 ######################
