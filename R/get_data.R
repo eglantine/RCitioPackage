@@ -107,6 +107,19 @@ getPredictedOccupancyData = function(base_url,session_id, service_date){
   return(predicted_occupancy_data)
 }
 
+getServiceDates =function (base_url,session_id){
+  referential_route = paste0(base_url,"/rest/service_date")
+  response = getResponseFromRoute(referential_route, session_id)
+  service_dates = data.table::rbindlist(response, fill = TRUE)
+
+  return(service_dates)
+}
+
+getMaxServiceDate = function(base_url,session_id){
+  service_dates = getServiceDates(base_url, session_id)
+  max_service_date = max(service_dates[service_dates$num_courses>0]$service_date)
+}
+
 ######################
 
 # Samples
