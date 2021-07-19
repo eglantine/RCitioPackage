@@ -94,11 +94,13 @@ getPredictedCoursesData = function(base_url, weekday = 0, session_id){
 
 }
 
-getPredictedOccupancyData = function(base_url,session_id, service_date){
+getPredictedOccupancyData = function(base_url,session_id, service_date, granularity = "15_minutes"){
   predicted_occupancy_route = paste0(base_url,
                                      "/rest/predicted_occupancy",
                                      "?service_date=",
-                                     service_date)
+                                     service_date,
+                                     "&granularity=",
+                                     granularity)
 
   response = getResponseFromRoute(predicted_occupancy_route, session_id)
 
