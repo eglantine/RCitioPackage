@@ -3,24 +3,23 @@ setCredentials = function(login, password){
 }
 
 getSessionId = function(login = "eglantine@cit.io", password, group = "casablanca", env = "staging"){
-  if(is.null(login)||is.null(password)){
-    stop("Please provide login and password")
-  } else {
 
     credentials = setCredentials(login, password)
 
-    login_route = paste0(
-      "https://",
-      group,
-      ".gateway.",
-      ifelse(env=="staging","staging.",""),
-      "cit.io/api/login"
-    )
+    login_route = paste0("https://",
+                         group,
+                         ".gateway.",
+                         ifelse(env=="staging","staging.",""),
+                         "cit.io/api/login")
 
     response = GET(login_route, add_headers(Authorization = credentials))
 
+    if(response$status_code == "401"){
+      return("Invalid login or password")
+    }
+
+    if(response$status_code == "200"){
     return(
-      response$cookies$value[response$cookies$name=="sessionid"]
-    )
-  }
+      response$cookies$value[response$cookies$name=="sessionid"])
+      }
 }
