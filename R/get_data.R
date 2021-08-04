@@ -38,8 +38,8 @@ getAgencyId = function(base_url, session_id){
   agency_route = paste0(base_url, "/rest/agency")
   response = getResponseFromRoute(agency_route,session_id)
 
-  if(response$detail == "Not found."){
-    stop("L'agence n'existe pas.")
+  if(!is.null(response$detail)){
+    stop(response$detail)
   } else {
     return(response$id)}
 }
@@ -77,7 +77,7 @@ getKPIdata = function(base_url, kpi, agency_id, spatial_aggregation_level = "lin
 
   response = getResponseFromRoute(kpi_route, session_id)
 
-  kpi_data_table = do.call(rbind.data.frame, c(response$data, stringsAsFactors = F))
+  kpi_data_table = do.call(rbind.data.frame, c(response$data, stringsAsFactors = F, fill = NA))
 
   return(kpi_data_table)
 
