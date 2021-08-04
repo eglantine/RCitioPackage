@@ -18,18 +18,28 @@ buildBaseUrl = function(group, env) {
 }
 
 getResponseFromRoute = function(route_url, session_id){
-  response = GET(route_url,set_cookies(sessionid = session_id))
-  return(
-    content(response)
-  )
+
+  if(is.null(session_id)){
+    print("No session id")
+  } else {
+
+    response = GET(route_url,set_cookies(sessionid = session_id))
+
+    if(response$status_code == "401"){
+      print("Invalid credentials")
+    }
+    return(
+      content(response)
+    )
+  }
 }
 
 getAgencyId = function(base_url, session_id){
   agency_route = paste0(base_url, "/rest/agency")
   response = getResponseFromRoute(agency_route,session_id)
 
-  if(is.null(response$id)){
-    stop("Agence non disponible")
+  if(response$detail == "Not found."){
+    stop("L'agence n'existe pas.")
   } else {
     return(response$id)}
 }
