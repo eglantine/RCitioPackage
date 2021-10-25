@@ -119,6 +119,23 @@ getPredictedOccupancyData = function(base_url,session_id, service_date, granular
   return(predicted_occupancy_data)
 }
 
+getPredictedStoptimesData = function(base_url,session_id, service_date){
+  predicted_occupancy_route = paste0(base_url,
+                                     "/rest/predicted_stoptimes",
+                                     "?service_date=",
+                                     service_date
+                                     # ,if(station_id>0){
+                                     # paste0("&station_id=", station_id)
+                                     #   }
+                                     )
+
+  response = getResponseFromRoute(predicted_occupancy_route, session_id)
+
+  predicted_stoptimes_data = data.table::rbindlist(response, fill = TRUE)
+
+  return(predicted_stoptimes_data)
+}
+
 getServiceDates =function (base_url,session_id){
   referential_route = paste0(base_url,"/rest/service_date")
   response = getResponseFromRoute(referential_route, session_id)
