@@ -5,11 +5,13 @@
 
 ###################################
 
-buildBaseUrl = function(group, env) {
+buildBaseUrl = function(group, project, env) {
   base_url = paste0(
     "https://",
     group,
-    ".api.",
+    ".",
+    project,
+    ".",
     ifelse(env=="staging","staging.",""),
     "cit.io"
   )
