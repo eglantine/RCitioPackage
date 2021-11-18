@@ -9,9 +9,9 @@ buildBaseUrl = function(group, project, env) {
   base_url = paste0(
     "https://",
     group,
-    ".,
-    "project"
-    .",
+    ".",
+    project,
+    ".",
     ifelse(env=="staging","staging.",""),
     "cit.io"
   )
@@ -121,8 +121,8 @@ getPredictedOccupancyData = function(base_url,session_id, service_date, granular
   return(predicted_occupancy_data)
 }
 
-getPredictedStoptimesData = function(base_url,session_id, service_date){
-  predicted_occupancy_route = paste0(base_url,
+getPredictedStoptimesData = function(prediction_base_url,session_id, service_date){
+  predicted_occupancy_route = paste0(prediction_base_url,
                                      "/rest/predicted_stoptimes",
                                      "?service_date=",
                                      service_date
