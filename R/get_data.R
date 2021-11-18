@@ -5,13 +5,11 @@
 
 ###################################
 
-buildBaseUrl = function(group, project, env) {
+buildBaseUrl = function(group, env) {
   base_url = paste0(
     "https://",
     group,
-    ".",
-    project,
-    ".",
+    ".api.",
     ifelse(env=="staging","staging.",""),
     "cit.io"
   )
@@ -121,8 +119,8 @@ getPredictedOccupancyData = function(base_url,session_id, service_date, granular
   return(predicted_occupancy_data)
 }
 
-getPredictedStoptimesData = function(prediction_base_url,session_id, service_date){
-  predicted_occupancy_route = paste0(prediction_base_url,
+getPredictedStoptimesData = function(base_url,session_id, service_date){
+  predicted_occupancy_route = paste0(base_url,
                                      "/rest/predicted_stoptimes",
                                      "?service_date=",
                                      service_date
@@ -159,7 +157,7 @@ getMaxServiceDate = function(base_url,session_id){
 #
 # session_id = getSessionId(login, password, group = "lorient", env = "staging")
 #
-# api_base_url = buildBaseUrl(group = "lorient", project = "api", env = "staging")
+# base_url = buildBaseUrl(group = "lorient", env = "staging")
 #
 # agency_id = getAgencyId(base_url, session_id)
 #
