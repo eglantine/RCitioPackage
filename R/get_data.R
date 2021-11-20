@@ -5,10 +5,10 @@
 
 ###################################
 
-buildBaseUrl = function(group, project, env) {
+buildBaseUrl = function(agency, project, env) {
   base_url = paste0(
     "https://",
-    group,
+    agency,
     ".",
     project,
     ".",
@@ -157,9 +157,9 @@ getMaxServiceDate = function(base_url,session_id){
 
 # Samples
 #
-# session_id = getSessionId(login, password, group = "lorient", env = "staging")
+# session_id = getSessionId(login, password, agency = "lorient", env = "staging")
 #
-# base_url = buildBaseUrl(group = "lorient","api", env = "staging")
+# base_url = buildBaseUrl(agency = "lorient","api", env = "staging")
 #
 # agency_id = getAgencyId(base_url, session_id)
 #
