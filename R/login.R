@@ -2,12 +2,12 @@ setCredentials = function(login, password){
   credentials = paste("Basic", jsonlite::base64_enc(paste0(login,":",password)))
 }
 
-getSessionId = function(login = "eglantine@cit.io", password, group = "casablanca", env = "staging"){
+getSessionId = function(login = "eglantine@cit.io", password, agency = "casablanca", env = "staging"){
 
     credentials = setCredentials(login, password)
 
     login_route = paste0("https://",
-                         group,
+                         agency,
                          ".gateway.",
                          ifelse(env=="staging","staging.",""),
                          "cit.io/api/login")
