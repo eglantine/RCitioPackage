@@ -50,7 +50,10 @@ getReferentialSection = function(base_url,session_id, referential_section){
   referential_route = paste0(base_url,"/rest/", referential_section)
   response = getResponseFromRoute(referential_route, session_id)
   #referential_table = do.call(rbind.data.frame, c(response, stringsAsFactors = F))
-  referential_table = data.table::rbindlist(response, fill = TRUE)
+  clean_referential = function(x) {x[c(-7,-8)]}
+  referential_table = lapply(response,clean_referential)
+  #  referential_table = data.table::rbindlist(response, fill = TRUE)
+  referential_table = data.table::rbindlist(referential_table, fill = TRUE)
 
   return(referential_table)
 }
