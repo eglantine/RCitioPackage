@@ -170,6 +170,11 @@ getMaxCountingCellDate = function(base_url,session_id){
   return (max_validation_date)
 }
 
+getAgencyConfiguration =function (gateway_base_url,session_id){
+  agency_configuration_route = paste0(gateway_base_url,"/agency.json")
+  response = getResponseFromRoute(agency_configuration_route, session_id)
+}
+
 ######################
 
 # Samples
