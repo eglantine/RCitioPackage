@@ -33,7 +33,7 @@ getFileListData = function(base_url, session_id, path){
   data = data.frame()
 
   for(i in 1:length(file_list)){
-    data_item = getFileFromCloud(base_url, session_id, file_list[i])
+    data_item = getFileData(base_url, session_id, file_list[i])
     data = rbind(data, data_item)
     i = i+1
   }
