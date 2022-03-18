@@ -172,7 +172,7 @@ getMaxCountingCellDate = function(base_url,session_id){
 
 getMaxControlsDate = function(base_url,session_id){
   service_dates = getServiceDates(base_url, session_id)
-  max_validation_date = max(service_dates[service_dates$num_controls>0,]$service_date)
+  max_controls_date = max(service_dates[service_dates$num_controls>0,]$service_date)
 
   return (max_controls_date)
 }
