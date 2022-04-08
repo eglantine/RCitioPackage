@@ -1,5 +1,6 @@
 .Rproj.user
 R/credentials.conf
+R/Sample.R
 .Rhistory
 .RData
 RCitioPackage.Rproj

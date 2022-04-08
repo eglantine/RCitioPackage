@@ -18,3 +18,21 @@ addReferentialNames = function(base_url, session_id, data, id_column_in_data,
   return(data)
 }
 
+
+addStationCoordinates = function(base_url, session_id, data, stop_id_column_in_data) {
+  stop_df = getCloudReferentialSection(base_url, session_id, "stops") %>% select(id, station_id)
+  station_df = getCloudReferentialSection(base_url, session_id, "stations")
+
+  referential = merge(stop_df,
+                      station_df,
+                      by.x = "station_id",
+                      by.y = "id") %>%
+    select("id", "name", "lat", "lon")
+
+  data = merge(x = data,
+               y = referential,
+               by.x = stop_id_column_in_data,
+               by.y = "id")
+  return(data)
+}
+
