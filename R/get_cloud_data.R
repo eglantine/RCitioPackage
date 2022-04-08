@@ -40,3 +40,10 @@ getFileListData = function(base_url, session_id, path){
   return(data)
 
 }
+
+getCloudReferentialSection = function(base_url,session_id, model){
+  model_path = paste0("clean-source/referential/", model, ".csv")
+
+  referential_table = getFileData(base_url, session_id, model_path)
+  return(referential_table)
+}
