@@ -131,7 +131,7 @@ getAllPredictedOccupanciesData = function(base_url,session_id, service_date, gra
                                      service_date,
                                      "&granularity=",
                                      granularity,
-                                     "&show_all_occupancy=True",
+                                     "&show_all_occupancy=True"
 )
 
   response = getResponseFromRoute(predicted_occupancy_route, session_id)
