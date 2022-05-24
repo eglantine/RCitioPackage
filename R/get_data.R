@@ -31,7 +31,7 @@ getResponseFromRoute = function(route_url, session_id){
       print("Invalid credentials")
     }
     return(
-      content(response, show_col_types = FALSE)
+      content(response, show_col_types = FALSE, encoding = "utf8")
     )
   }
 }
