@@ -207,6 +207,14 @@ getAgencyConfiguration =function (gateway_base_url,session_id){
   response = getResponseFromRoute(agency_configuration_route, session_id)
 }
 
+getActiveAgencies = function(){
+  response = content(GET("http://django.gateway.cit.io/agencies/"))
+  agency_list =  sapply(response, function(x) x$name)
+  state =  sapply(response, function(x) x$state)
+  active_agency_list = agency_list[state == "live"]
+
+}
+
 ######################
 
 # Samples
