@@ -194,6 +194,14 @@ getMaxControlsDate = function(base_url,session_id){
   return (max_controls_date)
 }
 
+getMaxScheduledCoursesDate = function(base_url,session_id){
+  service_dates = getServiceDates(base_url, session_id)
+  max_scheduled_courses_date = max(service_dates[service_dates$num_scheduled_courses>0,]$service_date)
+
+  return (max_scheduled_courses_date)
+}
+
+
 getAgencyConfiguration =function (gateway_base_url,session_id){
   agency_configuration_route = paste0(gateway_base_url,"/agency.json")
   response = getResponseFromRoute(agency_configuration_route, session_id)
