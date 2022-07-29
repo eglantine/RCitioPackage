@@ -82,7 +82,8 @@ getKPIdata = function(base_url, kpi, agency_id, spatial_aggregation_level = "lin
 
   response = getResponseFromRoute(kpi_route, session_id)
 
-  kpi_data_table = do.call(rbind.data.frame, c(response$data, stringsAsFactors = F, fill = NA))
+#  kpi_data_table = do.call(rbind.data.frame, c(response$data, stringsAsFactors = F, fill = NA))
+  kpi_data_table = data.table::rbindlist(response$data, fill = TRUE)
 
   return(kpi_data_table)
 
@@ -212,7 +213,6 @@ getActiveAgencies = function(){
   agency_list =  sapply(response, function(x) x$name)
   state =  sapply(response, function(x) x$state)
   active_agency_list = agency_list[state == "live"]
-
 }
 
 ######################
