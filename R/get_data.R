@@ -24,7 +24,6 @@ getResponseFromRoute = function(route_url, session_id){
   if(is.null(session_id)){
     print("No session id")
   } else {
-
     print(paste("Querying URL:", route_url))
 
     response = GET(route_url,set_cookies(sessionid = session_id))
