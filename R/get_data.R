@@ -8,7 +8,7 @@
 buildBaseUrl = function(agency, project, env) {
   
   if(env == "localhost"){
-    base_url = paste0("http://127.0.0.1/","/",agency)
+    base_url = paste0("http://localhost:8000","/",agency)
   }
   else {
     
@@ -22,7 +22,6 @@ buildBaseUrl = function(agency, project, env) {
     "cit.io"
   )
   }
-  
   return(base_url)
 }
 
